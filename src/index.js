@@ -27,7 +27,7 @@ firebase.initializeApp({
 
 function App(){
 const [uname,setUname] = useState("User");
-const [avatar,setAvatar] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3rk94I7wzaA_rsz4r8ESt00LK1F-sBudFUQ&usqp=CAU");
+const [avatar,setAvatar] = useState(`https://avatars.dicebear.com/api/avataaars/User${Math.random()}.svg`);
 const [list,setList] = useState();
 var ref = createRef();
 
@@ -67,7 +67,7 @@ return(
   }}/>
   <div>
   {
-  list ? list.map((item,index) => <Post index={index} item={item}/>) : ""
+    list ? list.map((item,index) => <Post index={index} item={item}/>) : ""
   }
   </div>
   </center>
@@ -81,6 +81,9 @@ return(
 function Profile(){
   return(
     <>
+      <div className="bg">
+      <center>
+      <div className="screen">
       <Navbar bg="light" variant="light">
       <Container>
         <Navbar.Brand>
@@ -93,13 +96,25 @@ function Profile(){
       </Nav>
       </Container>
     </Navbar>
+    <div style={{marginTop:30}}>
     <img src={avatar} style={{
       width: 70,
       margin: 10,
       border: "none",
       borderRadius: "50px",
     }}/>
-    <label><b>{uname}</b></label>
+    <p><b>{uname}</b></p>
+    </div>
+    <div>
+      {
+        list ? list.map((item,index) => {
+          return (item.uname == uname) ? <Post index={index} item={item}/> : ""
+        }) : ""
+      }
+  </div>
+    </div>
+    </center>
+    </div>
     </>
   )}
 
