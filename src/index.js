@@ -97,7 +97,7 @@ function Profile(){
       </Nav>
       </Container>
     </Navbar>
-    <div style={{marginTop:30}}>
+    <div style={{height:"100vh",marginTop:30}}>
     <img src={avatar} style={{
       width: 70,
       margin: 10,
