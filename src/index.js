@@ -6,7 +6,7 @@ import "./style.css";
 import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
-import "firebase/storage"
+import "firebase/storage";
 import {Nav,NavItem,Navbar,Container} from "react-bootstrap";
 import {HouseFill,PersonFill,BoxArrowInRight} from 'react-bootstrap-icons';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -65,9 +65,10 @@ return(
       await firebase.database().ref("instagram").push({uname:uname,avatar:avatar,src:url});
     })
   }}/>
+  <label for="file">Share Stories</label>
   <div>
   {
-    list ? list.map((item,index) => <Post index={index} item={item}/>) : ""
+    list ? list.map((item,index) => <Post index={index} item={item} list={list}/>) : ""
   }
   </div>
   </center>
@@ -108,15 +109,15 @@ function Profile(){
     <div>
       {
         list ? list.map((item,index) => {
-          return (item.uname == uname) ? <Post index={index} item={item}/> : ""
+          return (item.uname === uname && item.uname !== "User") ? <Post index={index} item={item} list={list}/> : ""
         }) : ""
       }
-  </div>
+    </div>
     </div>
     </center>
     </div>
     </>
-  )}
+)}
 
 function auth(){
 var provider = new firebase.auth.GoogleAuthProvider();
